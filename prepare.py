@@ -46,4 +46,35 @@ def stem(text):
     # loop through the text to stem the words
     stems = [ps.stem(word) for word in text.split()]
     
+    stems = ' '.join(stems)
+    
     return stems
+
+
+def lemmatize(text):
+    
+    # create the lemmatizer
+    wnl = nltk.stem.WordNetLemmatizer()
+    
+    # loop through the list to split and lemmatize
+    lemmas = [wnl.lemmatize(word) for word in text.split()]
+    
+    lemmas =' '.join(lemmas)
+    
+    return lemmas
+
+
+def remove_stopwords(text):
+    
+    # pull the english stopwords
+    stopword_list = stopwords.words('english')
+    
+    # split the inputted text into a list to loop through
+    words = text.split()
+    
+    # loop through to remove stop words from the list
+    filtered_words = [word for word in words if word not in stopword_list]
+    
+    filtered_words = ' '.join(lemmas)
+    
+    return filtered_words
