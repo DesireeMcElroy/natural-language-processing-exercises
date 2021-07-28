@@ -21,7 +21,7 @@ def basic_clean(string):
     # return normal form for the unicode string, encode/remove ascii
     string = unicodedata.normalize('NFKD', string).encode('ascii', 'ignore').decode('utf-8')
     # breaks down the string by keeping alphabet letters, numbers, apostraphes and spaces
-    string = re.sub(r"[^a-z0-9'\s]", '', string)
+    string = re.sub(r"[^a-z0-9\s]", '', string)
     
     return string
 
@@ -65,9 +65,9 @@ def lemmatize(text):
 
 
 def remove_stopwords(text):
-    
+    additional_stopwords = ['r', 'u', '2', 'ltgt', '4', 'ur', 'k']
     # pull the english stopwords
-    stopword_list = stopwords.words('english')
+    stopword_list = stopwords.words('english') + additional_stopwords
     
     # split the inputted text into a list to loop through
     words = text.split()
@@ -75,6 +75,6 @@ def remove_stopwords(text):
     # loop through to remove stop words from the list
     filtered_words = [word for word in words if word not in stopword_list]
     
-    filtered_words = ' '.join(lemmas)
+    filtered_words = ' '.join(filtered_words)
     
     return filtered_words
